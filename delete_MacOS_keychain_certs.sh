@@ -12,13 +12,13 @@ delete_certificate() {
     local CERT_SHA1=$2
     local USER=$3
     if [ -n "$USER" ]; then
-    		echo "Deleting certificate with SHA-1 '$CERT_SHA1' from keychain '$KEYCHAIN' for user $USER"
+    	echo "Deleting certificate with SHA-1 '$CERT_SHA1' from keychain '$KEYCHAIN' for user $USER"
         # If USER is provided, run as that user
-        #sudo -u "$USER" security delete-certificate -Z "$CERT_SHA1" "$KEYCHAIN"
+        sudo -u "$USER" security delete-certificate -Z "$CERT_SHA1" "$KEYCHAIN"
     else
-    		echo "Deleting certificate with SHA-1 '$CERT_SHA1' from keychain '$KEYCHAIN'"
+    	echo "Deleting certificate with SHA-1 '$CERT_SHA1' from keychain '$KEYCHAIN'"
         # If no USER is provided, delete from system keychain
-        #sudo security delete-certificate -Z "$CERT_SHA1" "$KEYCHAIN"
+        sudo security delete-certificate -Z "$CERT_SHA1" "$KEYCHAIN"
     fi
 }
 
