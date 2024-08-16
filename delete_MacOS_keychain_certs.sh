@@ -28,7 +28,7 @@ for USER in $USER_LIST; do
     if [ -f "$USER_KEYCHAIN" ]; then
         delete_certificate "$USER_KEYCHAIN" "$CERTIFICATE_SHA1" "$USER"
     else
-        echo "Keychain not found for user $USER"
+        #echo "Keychain not found for user $USER"
     fi
 done
 
@@ -42,7 +42,7 @@ for KEYCHAIN in "${SYSTEM_KEYCHAINS[@]}"; do
     if [ -f "$KEYCHAIN" ]; then
         delete_certificate "$KEYCHAIN" "$CERTIFICATE_SHA1"
     else
-        echo "System keychain '$KEYCHAIN' not found"
+        #echo "System keychain '$KEYCHAIN' not found"
     fi
 done
 
