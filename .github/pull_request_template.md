@@ -1,22 +1,22 @@
 ### Summary
 - JIRA Ticket ID : One Line Summary
 ### Description
-- What does this PR do?
+- What does this PR do?_
 - Why are these changes necessary?
 ### How has this been tested? 
 - Add the Manual Testing Details
 - Add the Unit Testing Details
 ### QA Test Recommendations
 - Recommendations for NSC team
-  - _Feature X - Test Suite X_
-  - _Feature Y - Test Suite Y_
-  - _Feature Z - Test Suite Z_
+  - Feature X - Test Suite X
+  - Feature Y - Test Suite Y
+  - Feature Z - Test Suite Z
 - Recommendations for NPA Team
-  - _Feature X_
+  - Feature X
 - Recommendations for EPDLP Team
-  - _Feature Y_
+  - Feature Y
 - Recommendations for BWAN Team
-  - _Feature Z_
+  - Feature Z
   
 
   
