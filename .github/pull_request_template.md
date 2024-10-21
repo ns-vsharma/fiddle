@@ -4,7 +4,7 @@
 - What does this PR do?
 - Why are these changes necessary?
 ### How has this been tested? 
-- Add the Manual Testing steps
+- Add the Manual Testing Details
 - Add the Unit Testing Details
 ### QA Test Recommendations
 - Recommendations for NSC team
