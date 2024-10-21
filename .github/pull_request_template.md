@@ -1,7 +1,7 @@
 ### Summary
 - JIRA Ticket ID : One Line Summary
 ### Description
-- What does this PR do?_
+- What does this PR do?
 - Why are these changes necessary?
 ### How has this been tested? 
 - Add the Manual Testing Details
