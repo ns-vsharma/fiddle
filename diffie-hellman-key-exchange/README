@@ -1,0 +1,7 @@
+Running Server Application
+    g++ server.cpp -o server
+    ./server
+
+Running Client Application 
+    g++ client.cpp -o client
+    ./client
