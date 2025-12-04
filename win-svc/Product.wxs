@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
+    <Product Id="*" 
+             Name="My Activity Monitor Service" 
+             Language="1033" 
+             Version="1.0.0.0" 
+             Manufacturer="My Company" 
+             UpgradeCode="{YOUR-UNIQUE-GUID}">
+
+        <Package InstallerVersion="200" Compressed="yes" InstallScope="perMachine" />
+        <Media Id="1" Cabinet="media1.cab" EmbedCab="yes" />
+
+        <Directory Id="TARGETDIR" Name="SourceDir">
+            <Directory Id="ProgramFilesFolder">
+                <Directory Id="INSTALLFOLDER" Name="MyActivityMonitor">
+                    <Component Id="ProductComponent" Guid="{ANOTHER-UNIQUE-GUID}">
+
+                        <File Id="MonitorServiceExe" 
+                              Source="$(var.MonitorService.TargetPath)" 
+                              KeyPath="yes" />
+                        
+                        <ServiceInstall Id="ServiceInstaller"
+                                        Name="MyActivityMonitorService" 
+                                        DisplayName="My System Activity Monitor" 
+                                        Type="ownProcess"
+                                        ErrorControl="normal"
+                                        Start="auto"
+                                        Account="LocalSystem"
+                                        Interactive="no" />
+                        
+                        <ServiceControl Id="ServiceControl"
+                                        Name="MyActivityMonitorService"
+                                        Stop="uninstall"
+                                        Remove="uninstall"
+                                        Start="install"
+                                        Wait="yes" />
+
+                    </Component>
+                </Directory>
+            </Directory>
+        </Directory>
+
+        <Feature Id="ProductFeature" Title="MonitorServiceInstaller" Level="1">
+            <ComponentRef Id="ProductComponent" />
+        </Feature>
+    </Product>
+</Wix>
