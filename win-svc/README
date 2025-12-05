@@ -1,0 +1,2 @@
+candle.exe Product.wxs
+light.exe Product.wixobj -out MyMonitorService.msi
