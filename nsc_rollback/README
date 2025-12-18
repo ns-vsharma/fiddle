@@ -1,0 +1,26 @@
+Build and Deployment Workflow
+----------------------------
+1. Compile C++: Build MainService.exe and UpdaterService.exe in Release mode.
+2. Compile MSI: Use the WiX Toolset commands:
+  - candle.exe Product.wxs
+  - light.exe Product.wixobj -o MyApp_v1.msi
+3. Deploy: Install MyApp_v1.msi on the target machine.
+4. Test Upgrade:
+ - Change the version in Product.wxs to 1.0.1.0
+ - Rebuild into MyApp_v2.msi
+ - Place MyApp_v2.msi in the folder your Main Service watches.
+ - Observe the Main Service notifying the Updater, the Updater spawning the Shadow Process, and the MSI successfully replacing both binaries while in Modern Standby.
+
+5. Check for Modern Standby robustness:
+ - Install v1.0.0.0 on a laptop.
+ - Place v1.0.1.0 in the download folder.
+ - Trigger the update.
+ - Immediately close the laptop lid.
+ - Wait 2 minutes and open it. If the services are running the new version, your PowerRequest logic and Shadow Copy mechanism worked perfectly.
+
+Final Pro-Tip: Signing
+For production, you must sign both .exe files and the .msi with a valid Code Signing Certificate. 
+If you don't, the CreateProcess call or the msiexec command might be blocked by Windows SmartScreen or User Account Control (UAC) when running in the background.
+
+
+
