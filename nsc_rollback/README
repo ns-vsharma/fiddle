@@ -22,5 +22,11 @@ Final Pro-Tip: Signing
 For production, you must sign both .exe files and the .msi with a valid Code Signing Certificate. 
 If you don't, the CreateProcess call or the msiexec command might be blocked by Windows SmartScreen or User Account Control (UAC) when running in the background.
 
-
-
+Using cl.exe - Commonly Used Flags (The "Secret Sauce")
+-------------------------------------------------------
+When building production-level software like your Windows Services, you use flags to tell cl.exe exactly how to behave:
+/O2 (Optimization): Creates the fastest possible code.
+/MT (Static Link): Includes the C Runtime (CRT) inside your .exe. This is critical for your Updater Service because it ensures the app runs on a fresh Windows machine that doesn't have the "Visual C++ Redistributable" installed yet.
+/EHsc: Enables standard C++ exception handling.
+/DUNICODE: Tells the compiler to treat all strings as wide-character (UTF-16), which is the native format for the Windows API.
+/Fe:: Specifies the name and location of the output .exe file.
