@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
+    <Product Id="*" Name="My Professional App" Language="1033" Version="1.0.0.0" 
+             Manufacturer="MyCompany" UpgradeCode="PUT-YOUR-GUID-HERE">
+        
+        <Package InstallerVersion="500" Compressed="yes" InstallScope="perMachine" />
+
+        <MajorUpgrade AllowSameVersionUpgrades="yes" 
+                      DowngradeErrorMessage="A newer version is already installed." />
+
+        <MediaTemplate EmbedCab="yes" />
+
+        <Feature Id="ProductFeature" Title="Main Application" Level="1">
+            <ComponentGroupRef Id="ProductComponents" />
+        </Feature>
+    </Product>
+
+    <Fragment>
+        <Directory Id="TARGETDIR" Name="SourceDir">
+            <Directory Id="ProgramFilesFolder">
+                <Directory Id="INSTALLFOLDER" Name="MyProfessionalApp" />
+            </Directory>
+        </Directory>
+    </Fragment>
+
+    <Fragment>
+        <ComponentGroup Id="ProductComponents" Directory="INSTALLFOLDER">
+            
+            <Component Id="MainServiceExecutable" Guid="*">
+                <File Id="MainExe" Source="MainService.exe" KeyPath="yes" Checksum="yes" />
+                
+                <ServiceInstall Id="ServiceInstaller1" Type="ownProcess" 
+                                Name="MyMainService" DisplayName="My Main Service" 
+                                Description="Performs background work." Start="auto" 
+                                Account="LocalSystem" ErrorControl="normal" />
+                
+                <ServiceControl Id="StartService1" Stop="both" Remove="uninstall" 
+                                Name="MyMainService" Wait="yes" Start="install" />
+            </Component>
+
+            <Component Id="UpdaterServiceExecutable" Guid="*">
+                <File Id="UpdaterExe" Source="UpdaterService.exe" KeyPath="yes" Checksum="yes" />
+                
+                <ServiceInstall Id="ServiceInstaller2" Type="ownProcess" 
+                                Name="MyUpdaterService" DisplayName="My Updater Service" 
+                                Description="Handles software updates." Start="auto" 
+                                Account="LocalSystem" ErrorControl="normal" />
+                
+                <ServiceControl Id="StartService2" Stop="both" Remove="uninstall" 
+                                Name="MyUpdaterService" Wait="yes" Start="install" />
+            </Component>
+
+        </ComponentGroup>
+    </Fragment>
+</Wix>
